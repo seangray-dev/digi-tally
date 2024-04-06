@@ -8,7 +8,7 @@ contract Counter {
         count += 1;
     }
 
-    function decremt() public {
+    function decrement() public {
         require(count > 0, "count must be greater than 0");
         count -= 1;
     }
