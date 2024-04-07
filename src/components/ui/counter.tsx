@@ -1,4 +1,5 @@
 import { CONTRACT } from '@/lib/thirdweb';
+import { Loader2 } from 'lucide-react';
 import { ReactNode } from 'react';
 import { prepareContractCall } from 'thirdweb';
 import {
@@ -10,19 +11,11 @@ import { useToast } from './use-toast';
 
 export default function Counter() {
   const account = useActiveAccount();
-  const { toast } = useToast();
-  const {
-    data: count,
-    isLoading,
-    refetch,
-  } = useReadContract({
+
+  const { data: count, isLoading } = useReadContract({
     contract: CONTRACT,
     method: 'getCount',
   });
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div className='flex flex-col justify-center items-center gap-12 md:gap-[110px] max-w-xs mx-auto mb-20 flex-1'>
@@ -38,7 +31,14 @@ export default function Counter() {
         </div>
       </div>
       <div className='text-[80px] md:text-[100px] font-bold w-[300px] md:w-[410px] h-[300px] md:h-[410px] flex justify-center items-center rounded-full bg-gradient-to-br from-secondary to-secondary/20 border-8 shadow-primary/20 shadow-2xl'>
-        {count?.toString()}
+        {isLoading ? (
+          <div className='text-base flex flex-col gap-2 items-center justify-center'>
+            <Loader2 className='mr-2 h-10 w-10 animate-spin' />
+            Please wait
+          </div>
+        ) : (
+          <div>{count?.toString()}</div>
+        )}
       </div>
     </div>
   );
