@@ -1,13 +1,16 @@
 import { CONTRACT } from '@/lib/thirdweb';
+import { ReactNode } from 'react';
 import { prepareContractCall } from 'thirdweb';
 import {
   TransactionButton,
   useActiveAccount,
   useReadContract,
 } from 'thirdweb/react';
+import { useToast } from './use-toast';
 
 export default function Counter() {
   const account = useActiveAccount();
+  const { toast } = useToast();
   const {
     data: count,
     isLoading,
@@ -30,28 +33,8 @@ export default function Counter() {
           </p>
         )}
         <div className='w-full flex items-center bg-secondary p-2 rounded-full justify-center gap-1'>
-          <TransactionButton
-            className='!bg-primary !w-1/2 !rounded-[26.5px] !text-2xl !p-0 !max-w-1/2 !min-w-0 !h-12 !flex !justify-center !items-center'
-            transaction={() =>
-              prepareContractCall({
-                contract: CONTRACT,
-                method: 'decrement',
-              })
-            }
-            onTransactionConfirmed={() => refetch()}>
-            -
-          </TransactionButton>
-          <TransactionButton
-            className='!bg-primary !w-1/2 !rounded-[26.5px] !text-2xl !p-0 !max-w-1/2 !min-w-0 !h-12 !flex !justify-center !items-center'
-            transaction={() =>
-              prepareContractCall({
-                contract: CONTRACT,
-                method: 'increment',
-              })
-            }
-            onTransactionConfirmed={() => refetch()}>
-            +
-          </TransactionButton>
+          <CounterTransaction method={'decrement'}>-</CounterTransaction>
+          <CounterTransaction method={'increment'}>+</CounterTransaction>
         </div>
       </div>
       <div className='text-[80px] md:text-[100px] font-bold w-[300px] md:w-[410px] h-[300px] md:h-[410px] flex justify-center items-center rounded-full bg-gradient-to-br from-secondary to-secondary/20 border-8 shadow-primary/20 shadow-2xl'>
@@ -60,3 +43,47 @@ export default function Counter() {
     </div>
   );
 }
+
+const CounterTransaction = ({
+  method,
+  children,
+}: {
+  method: 'increment' | 'decrement';
+  children: ReactNode;
+}) => {
+  const { toast } = useToast();
+  const { refetch } = useReadContract({
+    contract: CONTRACT,
+    method: 'getCount',
+  });
+
+  return (
+    <TransactionButton
+      className='!bg-primary !w-1/2 !rounded-[26.5px] !text-2xl !p-0 !max-w-1/2 !min-w-0 !h-12 !flex !justify-center !items-center'
+      transaction={() =>
+        prepareContractCall({
+          contract: CONTRACT,
+          method,
+        })
+      }
+      onError={() => {
+        toast({
+          variant: 'destructive',
+          title: 'An unexpected error occurred. Please try again.',
+        });
+      }}
+      onTransactionConfirmed={() => {
+        toast({
+          title: 'Transaction Successful!',
+        });
+        refetch();
+      }}
+      onTransactionSent={() => {
+        toast({
+          title: 'Transaction sent.',
+        });
+      }}>
+      {children}
+    </TransactionButton>
+  );
+};
