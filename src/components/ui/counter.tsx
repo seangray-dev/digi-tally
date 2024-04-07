@@ -54,7 +54,7 @@ export default function Counter() {
           </TransactionButton>
         </div>
       </div>
-      <div className='text-[80px] md:text-[100px] font-bold w-[300px] md:w-[410px] h-[300px] md:h-[410px] flex justify-center items-center rounded-full bg-gradient-to-br from-secondary to-secondary/20 border-8 drop-shadow-[0_-50px_-50px_0px_rgba(100,100,100,1)]'>
+      <div className='text-[80px] md:text-[100px] font-bold w-[300px] md:w-[410px] h-[300px] md:h-[410px] flex justify-center items-center rounded-full bg-gradient-to-br from-secondary to-secondary/20 border-8 shadow-primary/20 shadow-2xl'>
         {count?.toString()}
       </div>
     </div>
