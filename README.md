@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DigiTally - web3 Counter App
 
-## Getting Started
+[DigitTally](https://digi-tally.vercel.app/) demonstrates a simple interaction with the blockchain using [thirdweb](https://thirdweb.com/). It allows users to increment or decrement a counter stored on the blockchain, showcasing the basics of smart contract interactions within a React application.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Blockchain Integration on Sepolia Test Network: Leverages thirdweb to engage with our smart contract deployed on the Sepolia test network.
+- Increment/Decrement Counter: Users can modify the counter value stored on the blockchain.
+- Wallet Connection: Integrates with users' wallets for seamless blockchain interactions.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Connecting Your Wallet
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Initiate a wallet connection in the app by clicking the "Connect Wallet" button.
+- A prompt will request permission to connect to the app.
+- After connection, you can increment or decrement the counter using the "+" and "-" buttons.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Interacting with the Counter
 
-## Learn More
+To interact with the app on the Sepolia test network, users will need Sepolia ETH in their wallets. Sepolia ETH can be obtained from Sepolia testnet faucets, which are online services that distribute free test ETH for development and testing purposes.
 
-To learn more about Next.js, take a look at the following resources:
+### Obtaining Sepolia ETH
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To perform transactions on the Sepolia test network within [DigiTally](https://digi-tally.vercel.app/), you'll need Sepolia ETH, which has no real-world value but is necessary for executing transactions on the testnet. You can acquire Sepolia ETH from the following sources:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [Alchemy's Sepolia Faucet](https://www.alchemy.com/faucets/ethereum-sepolia)
+- [Infura's Sepolia Faucey](https://www.infura.io/faucet/sepolia)
 
-## Deploy on Vercel
+### Steps to Get Sepolia ETH
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Ensure your wallet (e.g., Metamask) is configured for the Sepolia test network. You can add Sepolia by selecting "Add Network" in Metamask and entering the Sepolia network details.
+- Visit one of the faucets listed above.
+- Enter your wallet address and follow the faucet's instructions to receive Sepolia ETH.
+- Check your wallet after a few moments; the Sepolia ETH should appear, allowing you to interact with [DigiTally](https://digi-tally.vercel.app/).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+By following these steps, you can easily obtain Sepolia ETH to explore and interact with [DigiTally](https://digi-tally.vercel.app/) on the Sepolia test network, facilitating a risk-free environment to understand blockchain transactions.
